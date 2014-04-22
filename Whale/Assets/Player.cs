@@ -7,16 +7,22 @@ public class Player : MonoBehaviour
 	
 	public Vector2 velocity;
 	
+	public Client commsClient;
+	
 	// Use this for initialization
 	void Start () 
 	{
 		transform.position = new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
+		
+		commsClient = GameObject.Find("GameClient").GetComponent<Client>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
 		transform.position = new Vector2(transform.position.x + velocity.x, transform.position.y + velocity.y);
+		
+		
 	}
 	
 	void setPosition(int newX, int newY)

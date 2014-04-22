@@ -9,7 +9,7 @@ public class Client : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		manager = GameObject.Find("Manager").GetComponent<GameManager>();
+		manager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		server = GameObject.Find ("FakeServer").GetComponent<FakeServerInputs>();
 	}
 	
@@ -19,7 +19,7 @@ public class Client : MonoBehaviour
 	
 	}
 	
-	void requestMove(string inputMove)
+	public void requestMove(string inputMove)
 	{
 		
 	}

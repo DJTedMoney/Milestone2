@@ -8,7 +8,7 @@ public class FakeServerInputs : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		activeClient = GameObject.Find("Client").GetComponent<Client>();
+		activeClient = GameObject.Find("GameClient").GetComponent<Client>();
 	}
 	
 	// Update is called once per frame
