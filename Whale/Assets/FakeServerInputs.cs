@@ -3,13 +3,12 @@ using System.Collections;
 
 public class FakeServerInputs : MonoBehaviour 
 {
-	
-	public Player active = GameObject.Find("Player").GetComponent<Player>();
+	public Client activeClient; 
 	
 	// Use this for initialization
 	void Start () 
 	{
-	
+		activeClient = GameObject.Find("Client").GetComponent<Client>();
 	}
 	
 	// Update is called once per frame

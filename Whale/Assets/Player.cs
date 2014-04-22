@@ -18,4 +18,14 @@ public class Player : MonoBehaviour
 	{
 		transform.position = new Vector2(transform.position.x + velocity.x, transform.position.y + velocity.y);
 	}
+	
+	void setPosition(int newX, int newY)
+	{
+		transform.position = new Vector2(newX, newY);
+	}
+	
+	void setVelocity(int newX, int newY)
+	{
+			rigidbody.velocity = new Vector2(newX, newY);
+	}
 }
