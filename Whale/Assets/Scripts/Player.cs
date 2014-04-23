@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 	{
 		commsClient = GameObject.Find("GameClient").GetComponent<Client>();
 		size = 40;
-		speed = -50;
+		speed = -20;
 		direction = new Vector2(0,1);
 	}
 	
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 	void Update () 
 	{
 		transform.position = new Vector2(transform.position.x + direction.x*speed, transform.position.y + direction.y*speed);
-		transform.localScale = transform.localScale*size;
+		transform.localScale = new Vector3(size, size, 1);
 		
 	}
 	

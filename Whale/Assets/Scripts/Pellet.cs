@@ -2,23 +2,19 @@ using UnityEngine;
 using System.Collections;
 
 public class Pellet : MonoBehaviour {
+	public Transform pelletMesh;
 
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
-	public void setX(int newX)
+	public void setPos(int newX, int newY)
 	{
-		transform.x = newX;
-	}
-	
-	public void setY(int newY)
-	{
-		transfom.y = newY;
+		transform.position = new Vector2(newX, newY);
 	}
 }

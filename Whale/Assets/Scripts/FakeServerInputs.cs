@@ -32,7 +32,7 @@ public class FakeServerInputs : MonoBehaviour
 		}
 		
 		p1Pos = new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
-		p1Speed = 10;
+		p1Speed = 20;
 		p1Size = 40;
 		tryMove("R");
 	}
@@ -51,22 +51,35 @@ public class FakeServerInputs : MonoBehaviour
 		//Random.Range (0, screenmax); 
 		
 		//foreach (Vector2 pos in pelletPos){
-		for (int i = 0; i < 4 ; i++){
-			if(p1Pos.x == pelletPos[i].x && p1Pos.y == pelletPos[i].y){
-				p1Size+= 5;
-				if (p1Speed>5)
-					p1Speed-= 5;
+		int xDif; 
+		int yDif;
+		bool xFlag = false;
+		bool yFlag = false;
+		for (int i = 0; i < 4 ; i++)
+		{
+			xDif = (int)(p1Pos.x-pelletPos[i].x);
+			yDif = (int)(p1Pos.y-pelletPos[i].y);
+			if(xDif <= ((p1Size/2) + 10) && xDif >= -((p1Size/2) + 10))
+				xFlag = true;
+			if(yDif <= ((p1Size/2) + 10) && yDif >= -((p1Size/2) + 10))
+				yFlag = true;
+			if (xFlag && yFlag) 
+			{
+				p1Size+= 20;
+				if (p1Speed>1)
+					p1Speed-= 1;
 				pelletPos[i] =  new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
 			}
 			
 		}
 		
 		
-		if(p1Pos.x >= 480 || p1Pos.x <= -480 || p1Pos.y >= 480 || p1Pos.y <= -480)
+		if(p1Pos.x >= 500 - (p1Size/2) || p1Pos.x <= -500 + (p1Size/2) || p1Pos.y >= 500 - (p1Size/2) 
+		   || p1Pos.y <= -500 + (p1Size/2))
 		{
 			p1Pos = new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
 			p1Size = 40;
-			p1Speed = 10;
+			p1Speed = 20;
 			sendMessage();
 		}
 	}
@@ -121,12 +134,13 @@ public class FakeServerInputs : MonoBehaviour
 	void sendMessage()
 	{
 		message = p1Pos.x.ToString() + "$" + p1Pos.y.ToString() + "$" + p1Dir.x.ToString() + "$" + 
-				  p1Dir.y.ToString() + "$" + p1Speed.ToString() + "$" + p1Size.ToString() + "$";
+				  p1Dir.y.ToString() + "$" + p1Speed.ToString() + "$" + p1Size.ToString();
 		
 		//should add all 4 of the pellets' X and Y to the end of the message
 		for (int i = 0; i < 4; i++){
-			message += "$" + pelletPos[i].x.ToString() + "$" + pelletPos[i].y.ToString();
+			message = message + "$" + pelletPos[i].x.ToString() + "$" + pelletPos[i].y.ToString();
 		}
+		message += "$";
 		
 		print("From Server: " + message);
 		

@@ -20,9 +20,10 @@ public class GameManager : MonoBehaviour
 		command = "";
 		move = false;
 		send = false;
+		pellets = new Pellet[4];
 		for(int i = 0; i <4; i++)
 		{
-			pellets[0] = GameObject.Find ("Pellet" + i.ToString()).GetComponent<Pellet>();
+			pellets[i] = GameObject.Find ("Pellet" + (i+1).ToString()).GetComponent<Pellet>();
 		}
 	}
 	
@@ -87,7 +88,6 @@ public class GameManager : MonoBehaviour
 			//sets player direction to match server
 			tempX = int.Parse(serverCommand.Substring(0,serverCommand.IndexOf(delim)));
 			serverCommand= serverCommand.Substring(serverCommand.IndexOf(delim)+1);
-			print (serverCommand);
 			tempY = int.Parse(serverCommand.Substring(0,serverCommand.IndexOf(delim)));
 			
 			serverCommand = serverCommand.Substring(serverCommand.IndexOf(delim)+1);
@@ -103,10 +103,13 @@ public class GameManager : MonoBehaviour
 			//sets pellet position
 			for(int i = 0; i < 4; i++)
 			{
-				pellets[i].setX(int.Parse(serverCommand.Substring(0,serverCommand.IndexOf(delim))));
+				
+				print ("i = " + i+ "\ncomand: " + serverCommand);
+				tempX = (int)float.Parse(serverCommand.Substring(0,serverCommand.IndexOf(delim)));
 				serverCommand = serverCommand.Substring(serverCommand.IndexOf(delim)+1);
-				pellets[i].setY(int.Parse(serverCommand.Substring(0,serverCommand.IndexOf(delim))));
+				tempY = (int)float.Parse(serverCommand.Substring(0,serverCommand.IndexOf(delim)));
 				serverCommand = serverCommand.Substring(serverCommand.IndexOf(delim)+1);
+				pellets[i].setPos(tempX, tempY);
 			}
 			move = false;
 		}
