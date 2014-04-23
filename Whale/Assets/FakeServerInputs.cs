@@ -1,10 +1,17 @@
 using UnityEngine;
 using System.Collections;
 
+//make an array of pairs (4) to keep track of the x, y for each pellet
+//in update: if player's new position collides with a pellet, that pellet gets repositioned
+//player's size++ and speed-- change
+//this info gets added to the "message" which gets passed to "client" -> "GameManager" (which then parses the message)
+//(only need to add the X, Y position of each pellet to the message)
+
 public class FakeServerInputs : MonoBehaviour 
 {
 	public Client activeClient;
 	public string message;
+	public Vector2[] pelletPos;
 	public Vector2 p1Pos;
 	public Vector2 p1Dir;
 	public int p1Speed;
@@ -16,6 +23,8 @@ public class FakeServerInputs : MonoBehaviour
 	void Start() 
 	{
 		activeClient = GameObject.Find("GameClient").GetComponent<Client>();
+		pelletPos = new Vector2[4];
+		foreach (Vector2 pos in pelletPos){	pos =  new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );}
 		p1Pos = new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
 		p1Speed = 50;
 		p1Size = 10;
@@ -28,6 +37,12 @@ public class FakeServerInputs : MonoBehaviour
 		//updates player position
 		p1Pos = p1Pos + (p1Dir * p1Speed);
 		sendMessage();
+		
+		//if player's position collides with a pellet:
+		//playerSize increases
+		//playerSpeed decreases
+		//pellet respawns to a random location
+			//Random.Range (0, screenmax);  //jason says do it (-450, 450)
 	}
 	
 	void tryMove(string inputMove)
