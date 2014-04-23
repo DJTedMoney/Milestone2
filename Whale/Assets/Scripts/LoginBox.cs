@@ -3,7 +3,8 @@ using System.Collections;
 
 public class LoginBox : MonoBehaviour 
 {
-public string userName;
+	public string userName;
+	public string passWord;
 	
 	public GUIText grafxText;
 	
@@ -15,6 +16,7 @@ public string userName;
 		// grafxText = GameObject.Find("GUIText").GetComponent<GUIText>();
 		
 		userName = "0000";
+		passWord = "";
 		
 		// grafxText.text = "0000 0000";
 	}
@@ -32,6 +34,10 @@ public string userName;
 			GUI.Label(new Rect(130, 200, 100, 20), "UserName : ");
 			
 			userName = GUI.TextField(new Rect(200, 200, 100, 20), userName );
+			
+			GUI.Label(new Rect(130, 220, 100, 20), "PassWord : ");
+			
+			passWord = GUI.TextField(new Rect(200, 220, 100, 20), passWord);
 			
 			if(GUI.Button (new Rect (200, 170, 100, 20), "Connect") )
 			{
