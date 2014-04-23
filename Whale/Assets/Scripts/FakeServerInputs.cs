@@ -24,7 +24,8 @@ public class FakeServerInputs : MonoBehaviour
 	{
 		activeClient = GameObject.Find("GameClient").GetComponent<Client>();
 		pelletPos = new Vector2[4];
-		foreach (Vector2 pos in pelletPos){	pos =  new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );}
+		foreach (Vector2 pos in pelletPos)
+			{pos =  new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );}
 		p1Pos = new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
 		p1Speed = 10;
 		p1Size = 40;
@@ -42,7 +43,17 @@ public class FakeServerInputs : MonoBehaviour
 		//playerSize increases
 		//playerSpeed decreases
 		//pellet respawns to a random location
-			//Random.Range (0, screenmax);  //jason says do it (-450, 450)
+		//Random.Range (0, screenmax); 
+		
+		foreach (Vector2 pos in pelletPos){
+			if(p1Pos.x == pos.x && p1Pos.y == pos.y){
+				p1Size++;
+				p1Speed--;
+				pos =  new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
+			}
+			
+		}
+		
 		
 		if(p1Pos.x >= 480 || p1Pos.x <= -480 || p1Pos.y >= 480 || p1Pos.y <= -480)
 		{
