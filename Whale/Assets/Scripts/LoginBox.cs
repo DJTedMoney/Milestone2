@@ -22,7 +22,7 @@ public string userName;
 	// Update is called once per frame
 	void Update () 
 	{
-		grafxText.text = "hello";
+		// grafxText.text = "hello";
 	}
 	
 	void OnGui()
