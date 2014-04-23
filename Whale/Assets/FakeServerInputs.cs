@@ -25,31 +25,61 @@ public class FakeServerInputs : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		//updates player position
+		p1Pos = p1Pos + (p1Dir * p1Speed);
+		sendMessage();
 	}
 	
 	void tryMove(string inputMove)
 	{
 		//changes position
-		if(inputMove == "pU")
+		if(inputMove == "U")
 		{
 			p1Dir = new Vector2(0,1);
+			if(p1Speed < 0)
+				p1Speed *= -1;
 		}
-		else if(inputMove == "pD")
+		else if(inputMove == "D")
 		{
-			p1Dir = new Vector2(0,1) * -1;
+			p1Dir = new Vector2(0,1);
+			if(p1Speed > 0)
+				p1Speed *= -1;
 		}
-		else if(inputMove == "pL")
+		else if(inputMove == "L")
 		{
-			p1Dir = new Vector2(0,1) * -1;
+			p1Dir = new Vector2(0,1);
+			if(p1Speed > 0)
+				p1Speed *= -1;
 		}
-		else if(inputMove == "pR")
+		else if(inputMove == "R")
 		{
 			p1Dir = new Vector2(1,0);
+			if(p1Speed < 0)
+				p1Speed *= -1;
 		}
 		sendMessage();
+	}
+	
+	public void getMessage(string input)
+	{
+		string tempMes = input.Substring(0,input.IndexOf(delim));
 		
+		//parses out the message to the variables
+		print(input);
+		input= input.Substring(input.IndexOf(delim)+1);
+		print(input);
+		p1Pos.x  =  int.Parse(input.Substring(0,input.IndexOf(delim)));
+		input= input.Substring(input.IndexOf(delim)+1);
+		print(input);
+		p1Pos.y  =  int.Parse(input.Substring(0,input.IndexOf(delim)));
+		input= input.Substring(input.IndexOf(delim)+1);
+		print(input);
+		p1Speed = int.Parse(input.Substring(0,input.IndexOf(delim)));
+		input= input.Substring(input.IndexOf(delim)+1);
+		print(input);
+		p1Size = int.Parse(input);
 		
+		tryMove(tempMes);
 	}
 	
 	void sendMessage()

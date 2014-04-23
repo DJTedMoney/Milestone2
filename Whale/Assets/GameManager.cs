@@ -31,20 +31,26 @@ public class GameManager : MonoBehaviour
 			command = "U$"; 
 		}
 		
-		if(Input.GetKeyDown(KeyCode.DownArrow) )
+		else if(Input.GetKeyDown(KeyCode.DownArrow) )
 		{
 			command = "D$";
 		}
 		
-		if(Input.GetKeyDown(KeyCode.LeftArrow) )
+		else if(Input.GetKeyDown(KeyCode.LeftArrow) )
 		{
 			command = "L$";
 		}
 		
-		if(Input.GetKeyDown(KeyCode.RightArrow) )
+		else if(Input.GetKeyDown(KeyCode.RightArrow) )
 		{
 			command = "R$";
 		}
+		//default command, means no change
+		else
+		{
+			command = "X$";
+		}
+		
 		//finishes the command with player data (Position x and y, speed, and size)
 		command = command + player.transform.position.x.ToString() + "$" + player.transform.position.y.ToString() 
 			      + "$" + player.speed.ToString() + "$" + player.size.ToString();

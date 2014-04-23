@@ -28,7 +28,7 @@ public class Client : MonoBehaviour
 	{
 		//sends the movement change command to server
 		//(Will eventualy be TCP code to send inputMove to server)
-		server.message = inputMove;		
+		server.getMessage(inputMove);		
 	}
 	
 	//gets move data from server and sends it to gameManager
