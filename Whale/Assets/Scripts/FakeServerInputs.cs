@@ -36,7 +36,6 @@ public class FakeServerInputs : MonoBehaviour
 	{
 		//updates player position
 		p1Pos = p1Pos + (p1Dir * p1Speed);
-<<<<<<< HEAD:Whale/Assets/FakeServerInputs.cs
 		sendMessage();
 		
 		//if player's position collides with a pellet:
@@ -44,7 +43,6 @@ public class FakeServerInputs : MonoBehaviour
 		//playerSpeed decreases
 		//pellet respawns to a random location
 			//Random.Range (0, screenmax);  //jason says do it (-450, 450)
-=======
 		
 		if(p1Pos.x >= 480 || p1Pos.x <= -480 || p1Pos.y >= 480 || p1Pos.y <= -480)
 		{
@@ -53,7 +51,6 @@ public class FakeServerInputs : MonoBehaviour
 			p1Speed = 10;
 			sendMessage();
 		}
->>>>>>> d46404c54bba8b42930b76abf40a4f2279dce870:Whale/Assets/Scripts/FakeServerInputs.cs
 	}
 	
 	void tryMove(string inputMove)
