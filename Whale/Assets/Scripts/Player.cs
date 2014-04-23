@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 	void Update () 
 	{
 		transform.position = new Vector2(transform.position.x + direction.x*speed, transform.position.y + direction.y*speed);
-		
+		transform.localScale = transform.localScale*size;
 		
 	}
 	

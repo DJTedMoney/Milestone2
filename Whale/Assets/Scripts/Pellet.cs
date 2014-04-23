@@ -12,4 +12,13 @@ public class Pellet : MonoBehaviour {
 	void Update () {
 	
 	}
+	public void setX(int newX)
+	{
+		transform.x = newX;
+	}
+	
+	public void setY(int newY)
+	{
+		transfom.y = newY;
+	}
 }

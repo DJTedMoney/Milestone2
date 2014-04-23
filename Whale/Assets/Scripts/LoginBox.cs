@@ -25,13 +25,14 @@ public string userName;
 		// grafxText.text = "hello";
 	}
 	
-	void OnGui()
+	void OnGUI()
 	{	
 		if(!showLogin)
 		{
-			if(GUI.Button (new Rect (100, 100, 100, 20), "Connect") )
+			if (GUI.Button (new Rect (500,200,100,20), "Connect"))
 			{
 				grafxText.text = "Connect";
+				showLogin = !showLogin;
 			}
 		}
 		

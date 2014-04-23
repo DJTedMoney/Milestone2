@@ -53,8 +53,9 @@ public class FakeServerInputs : MonoBehaviour
 		//foreach (Vector2 pos in pelletPos){
 		for (int i = 0; i < 4 ; i++){
 			if(p1Pos.x == pelletPos[i].x && p1Pos.y == pelletPos[i].y){
-				p1Size++;
-				p1Speed--;
+				p1Size+= 5;
+				if (p1Speed>5)
+					p1Speed-= 5;
 				pelletPos[i] =  new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
 			}
 			
@@ -120,7 +121,7 @@ public class FakeServerInputs : MonoBehaviour
 	void sendMessage()
 	{
 		message = p1Pos.x.ToString() + "$" + p1Pos.y.ToString() + "$" + p1Dir.x.ToString() + "$" + 
-				  p1Dir.y.ToString() + "$" + p1Speed.ToString() + "$" + p1Size.ToString();
+				  p1Dir.y.ToString() + "$" + p1Speed.ToString() + "$" + p1Size.ToString() + "$";
 		
 		//should add all 4 of the pellets' X and Y to the end of the message
 		for (int i = 0; i < 4; i++){

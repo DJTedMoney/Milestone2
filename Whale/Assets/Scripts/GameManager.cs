@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 	public string command;
 	public string serverCommand;
 	public Player player;
+	public Pellet[] pellets;
 	char delim = '$';
 	public bool move;
 	public bool send;
@@ -19,6 +20,10 @@ public class GameManager : MonoBehaviour
 		command = "";
 		move = false;
 		send = false;
+		for(int i = 0; i <4; i++)
+		{
+			pellets[0] = GameObject.Find ("Pellet" + i.ToString()).GetComponent<Pellet>();
+		}
 	}
 	
 	// Update is called once per frame
@@ -92,7 +97,17 @@ public class GameManager : MonoBehaviour
 			serverCommand = serverCommand.Substring(serverCommand.IndexOf(delim)+1);
 			
 			//sets player size
-			player.size = int.Parse(serverCommand);
+			player.size = int.Parse(serverCommand.Substring(0,serverCommand.IndexOf(delim)));
+			serverCommand = serverCommand.Substring(serverCommand.IndexOf(delim)+1);
+			
+			//sets pellet position
+			for(int i = 0; i < 4; i++)
+			{
+				pellets[i].setX(int.Parse(serverCommand.Substring(0,serverCommand.IndexOf(delim))));
+				serverCommand = serverCommand.Substring(serverCommand.IndexOf(delim)+1);
+				pellets[i].setY(int.Parse(serverCommand.Substring(0,serverCommand.IndexOf(delim))));
+				serverCommand = serverCommand.Substring(serverCommand.IndexOf(delim)+1);
+			}
 			move = false;
 		}
 	}
