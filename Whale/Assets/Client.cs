@@ -5,7 +5,6 @@ public class Client : MonoBehaviour
 {
 	public GameManager manager;
 	public FakeServerInputs server;
-	public char delim = '$';
 	public string message;
 	
 	
@@ -36,6 +35,7 @@ public class Client : MonoBehaviour
 	{
 		//sends velocity change comand to gameManager
 			manager.command = newMove;
+			manager.move = true;
 	}
 	
 }

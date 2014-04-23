@@ -65,18 +65,13 @@ public class FakeServerInputs : MonoBehaviour
 		string tempMes = input.Substring(0,input.IndexOf(delim));
 		
 		//parses out the message to the variables
-		print(input);
 		input= input.Substring(input.IndexOf(delim)+1);
-		print(input);
 		p1Pos.x  =  int.Parse(input.Substring(0,input.IndexOf(delim)));
 		input= input.Substring(input.IndexOf(delim)+1);
-		print(input);
 		p1Pos.y  =  int.Parse(input.Substring(0,input.IndexOf(delim)));
 		input= input.Substring(input.IndexOf(delim)+1);
-		print(input);
 		p1Speed = int.Parse(input.Substring(0,input.IndexOf(delim)));
 		input= input.Substring(input.IndexOf(delim)+1);
-		print(input);
 		p1Size = int.Parse(input);
 		
 		tryMove(tempMes);
@@ -84,8 +79,8 @@ public class FakeServerInputs : MonoBehaviour
 	
 	void sendMessage()
 	{
-		message = "x" + p1Pos.x.ToString() + "y" + p1Pos.y.ToString() + "dX" + p1Dir.x.ToString() + "dY" + 
-				  p1Dir.y.ToString() + "t" + p1Speed.ToString() + "s" + p1Size.ToString();
+		message = p1Pos.x.ToString() + "$" + p1Pos.y.ToString() + "$" + p1Dir.x.ToString() + "$" + 
+				  p1Dir.y.ToString() + "$" + p1Speed.ToString() + "$" + p1Size.ToString();
 		
 		//This will eventualy be TCP code to send message to the client
 		activeClient.message = message;

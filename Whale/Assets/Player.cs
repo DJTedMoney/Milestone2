@@ -25,18 +25,18 @@ public class Player : MonoBehaviour
 		
 	}
 	
-	void setPosition(int newX, int newY)
+	public void setPosition(int newX, int newY)
 	{
 		transform.position = new Vector2(newX, newY);
 	}
 	
-	void setDirection(int newX, int newY)
+	public void setDirection(int newX, int newY)
 	{
 		direction = new Vector2(newX, newY);
 		rigidbody.velocity = direction * speed;
 	}
 	
-	void setSpeed(int newSpeed)
+	public void setSpeed(int newSpeed)
 	{
 		speed = newSpeed;
 		rigidbody.velocity = direction*speed;
