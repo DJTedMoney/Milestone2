@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 	public Player player;
 	char delim = '$';
 	public bool move;
+	public bool send;
 	
 	// Use this for initialization
 	void Start () 
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
 		player = GameObject.Find ("Player").GetComponent<Player>();
 		command = "";
 		move = false;
+		send = false;
 	}
 	
 	// Update is called once per frame
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
 	{
 		//starts command with new direction (U = up, D = down
 		//L = left, and R = right)
+		send = true;
 		if(Input.GetKeyDown(KeyCode.UpArrow) )
 		{
 			command = "U$"; 
@@ -52,13 +55,17 @@ public class GameManager : MonoBehaviour
 		//default command, means no change
 		else
 		{
-			command = "X$";
+			send = false;
 		}
 		
 		//finishes the command with player data (Position x and y, speed, and size)
-		command = command + player.transform.position.x.ToString() + "$" + player.transform.position.y.ToString() 
+		if(send == true)
+		{
+			command = command + player.transform.position.x.ToString() + "$" + player.transform.position.y.ToString() 
 			      + "$" + player.speed.ToString() + "$" + player.size.ToString();
-		activeClient.requestMove(command);
+			activeClient.requestMove(command);
+			send = false;
+		}
 	}
 	
 	void applyMove()
@@ -66,16 +73,18 @@ public class GameManager : MonoBehaviour
 		if(move == true)
 		{
 			//sets player position to match server
-			int tempX  =  int.Parse(serverCommand.Substring(0,serverCommand.IndexOf(delim)));
+			int tempX  =  (int)float.Parse(serverCommand.Substring(0,serverCommand.IndexOf(delim)));
 			serverCommand= serverCommand.Substring(serverCommand.IndexOf(delim)+1);
-			int tempY  =  int.Parse(serverCommand.Substring(0,serverCommand.IndexOf(delim)));
+			int tempY  =  (int)float.Parse(serverCommand.Substring(0,serverCommand.IndexOf(delim)));
 			player.transform.position = new Vector2(tempX, tempY);
 			serverCommand= serverCommand.Substring(serverCommand.IndexOf(delim)+1);
 			
 			//sets player direction to match server
 			tempX = int.Parse(serverCommand.Substring(0,serverCommand.IndexOf(delim)));
 			serverCommand= serverCommand.Substring(serverCommand.IndexOf(delim)+1);
-			tempY = int.Parse(command.Substring(0,command.IndexOf(delim)));
+			print (serverCommand);
+			tempY = int.Parse(serverCommand.Substring(0,serverCommand.IndexOf(delim)));
+			
 			serverCommand = serverCommand.Substring(serverCommand.IndexOf(delim)+1);
 			player.setDirection(tempX, tempY);
 			//sets player speed

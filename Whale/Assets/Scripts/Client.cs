@@ -34,7 +34,7 @@ public class Client : MonoBehaviour
 	public void doMove(string newMove)
 	{
 		//sends velocity change comand to gameManager
-			manager.command = newMove;
+			manager.serverCommand = newMove;
 			manager.move = true;
 	}
 	
