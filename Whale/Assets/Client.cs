@@ -5,12 +5,16 @@ public class Client : MonoBehaviour
 {
 	public GameManager manager;
 	public FakeServerInputs server;
+	public char delim = '$';
+	public string message;
+	
 	
 	// Use this for initialization
 	void Start () 
 	{
 		manager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		server = GameObject.Find ("FakeServer").GetComponent<FakeServerInputs>();
+		message = "";
 	}
 	
 	// Update is called once per frame
@@ -19,10 +23,19 @@ public class Client : MonoBehaviour
 	
 	}
 	
+	//sends move request to "server" from gameManager
 	public void requestMove(string inputMove)
 	{
-		
+		//sends the movement change command to server
+		//(Will eventualy be TCP code to send inputMove to server)
+		server.message = inputMove;		
 	}
 	
+	//gets move data from server and sends it to gameManager
+	public void doMove(string newMove)
+	{
+		//sends velocity change comand to gameManager
+			manager.command = newMove;
+	}
 	
 }

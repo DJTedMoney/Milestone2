@@ -5,22 +5,22 @@ public class Player : MonoBehaviour
 {
 	public Transform playerMesh;
 	
-	public Vector2 velocity;
+	public Vector2 direction;
+	public int speed;
+	public int size;
 	
 	public Client commsClient;
 	
 	// Use this for initialization
 	void Start () 
 	{
-		transform.position = new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
-		
 		commsClient = GameObject.Find("GameClient").GetComponent<Client>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		transform.position = new Vector2(transform.position.x + velocity.x, transform.position.y + velocity.y);
+		transform.position = new Vector2(transform.position.x + direction.x*speed, transform.position.y + direction.y*speed);
 		
 		
 	}
@@ -30,8 +30,15 @@ public class Player : MonoBehaviour
 		transform.position = new Vector2(newX, newY);
 	}
 	
-	void setVelocity(int newX, int newY)
+	void setDirection(int newX, int newY)
 	{
-			rigidbody.velocity = new Vector2(newX, newY);
+		direction = new Vector2(newX, newY);
+		rigidbody.velocity = direction * speed;
+	}
+	
+	void setSpeed(int newSpeed)
+	{
+		speed = newSpeed;
+		rigidbody.velocity = direction*speed;
 	}
 }
