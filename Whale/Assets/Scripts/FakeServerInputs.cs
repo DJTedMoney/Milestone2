@@ -24,8 +24,13 @@ public class FakeServerInputs : MonoBehaviour
 	{
 		activeClient = GameObject.Find("GameClient").GetComponent<Client>();
 		pelletPos = new Vector2[4];
-		foreach (Vector2 pos in pelletPos)
-			{pos =  new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );}
+	//	foreach (Vector2 pos in pelletPos)
+	//		{pos. =  new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );}
+		
+		for (int i = 0; i < 4 ; i++){
+			pelletPos[i] =  new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
+		}
+		
 		p1Pos = new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
 		p1Speed = 10;
 		p1Size = 40;
@@ -45,11 +50,12 @@ public class FakeServerInputs : MonoBehaviour
 		//pellet respawns to a random location
 		//Random.Range (0, screenmax); 
 		
-		foreach (Vector2 pos in pelletPos){
-			if(p1Pos.x == pos.x && p1Pos.y == pos.y){
+		//foreach (Vector2 pos in pelletPos){
+		for (int i = 0; i < 4 ; i++){
+			if(p1Pos.x == pelletPos[i].x && p1Pos.y == pelletPos[i].y){
 				p1Size++;
 				p1Speed--;
-				pos =  new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
+				pelletPos[i] =  new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
 			}
 			
 		}
