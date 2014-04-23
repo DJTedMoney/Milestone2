@@ -25,21 +25,31 @@ public string userName;
 		// grafxText.text = "hello";
 	}
 	
-	void OnGui()
+	void OnGUI()
 	{	
 		if(!showLogin)
 		{
-			if(GUI.Button (new Rect (100, 100, 100, 20), "Connect") )
+			GUI.Label(new Rect(130, 200, 100, 20), "UserName : ");
+			
+			userName = GUI.TextField(new Rect(200, 200, 100, 20), userName );
+			
+			if(GUI.Button (new Rect (200, 170, 100, 20), "Connect") )
 			{
-				grafxText.text = "Connect";
+				//grafxText.text = "Connect";
+				
+				showLogin = !showLogin;
 			}
 		}
 		
 		else
 		{
-			if(GUI.Button (new Rect(10, 10, 100, 20), "Trying") )
+			GUI.Label(new Rect(10, 40, 100, 20), userName);
+			
+			if(GUI.Button (new Rect(10, 10, 100, 20), "Disconnect") )
 			{
-				grafxText.text = "Hello";
+				//grafxText.text = "Hello";
+				
+				showLogin = !showLogin;
 			}
 		}
 	}
