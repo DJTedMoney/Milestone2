@@ -24,8 +24,6 @@ public class Player : MonoBehaviour
 	void Update () 
 	{
 		transform.position = new Vector2(transform.position.x + direction.x*speed, transform.position.y + direction.y*speed);
-		
-		
 	}
 	
 	public void setPosition(int newX, int newY)
@@ -43,5 +41,13 @@ public class Player : MonoBehaviour
 	{
 		speed = newSpeed;
 		//rigidbody.velocity = direction*speed;
+	}
+	
+	void OnGUI()
+	{
+		GUI.Label(new Rect(10, 65, 40, 20), "Size : ");
+		GUI.Label(new Rect(55, 65, 40, 20), size.ToString() );
+		GUI.Label(new Rect(10, 90, 40, 20), "Speed : ");
+		GUI.Label(new Rect(55, 90, 40, 20), speed.ToString() );
 	}
 }
