@@ -32,7 +32,7 @@ public class FakeServerInputs : MonoBehaviour
 		}
 		
 		p1Pos = new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
-		p1Speed = 20;
+		p1Speed = 10;
 		p1Size = 40;
 		tryMove("R");
 	}
@@ -72,6 +72,8 @@ public class FakeServerInputs : MonoBehaviour
 					p1Speed-= 1;
 				pelletPos[i] =  new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
 			}
+			xFlag = false;
+			yFlag = false;
 			
 		}
 		
@@ -81,7 +83,7 @@ public class FakeServerInputs : MonoBehaviour
 		{
 			p1Pos = new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
 			p1Size = 40;
-			p1Speed = 20;
+			p1Speed = 10;
 			sendMessage();
 		}
 	}

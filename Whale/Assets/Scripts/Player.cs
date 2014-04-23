@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 	{
 		commsClient = GameObject.Find("GameClient").GetComponent<Client>();
 		size = 40;
-		speed = -50;
+		speed = 0;
 		direction = new Vector2(0,1);
 	}
 	
