@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
 	void Start () 
 	{
 		commsClient = GameObject.Find("GameClient").GetComponent<Client>();
+		size = 40;
+		speed = -50;
+		direction = new Vector2(0,1);
 	}
 	
 	// Update is called once per frame
@@ -33,12 +36,12 @@ public class Player : MonoBehaviour
 	public void setDirection(int newX, int newY)
 	{
 		direction = new Vector2(newX, newY);
-		rigidbody.velocity = direction * speed;
+		//rigidbody.velocity = direction * speed;
 	}
 	
 	public void setSpeed(int newSpeed)
 	{
 		speed = newSpeed;
-		rigidbody.velocity = direction*speed;
+		//rigidbody.velocity = direction*speed;
 	}
 }
