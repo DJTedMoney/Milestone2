@@ -17,8 +17,8 @@ public class FakeServerInputs : MonoBehaviour
 	{
 		activeClient = GameObject.Find("GameClient").GetComponent<Client>();
 		p1Pos = new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
-		p1Speed = 50;
-		p1Size = 10;
+		p1Speed = 10;
+		p1Size = 40;
 		tryMove("R");
 	}
 	
@@ -27,7 +27,14 @@ public class FakeServerInputs : MonoBehaviour
 	{
 		//updates player position
 		p1Pos = p1Pos + (p1Dir * p1Speed);
-		sendMessage();
+		
+		if(p1Pos.x >= 480 || p1Pos.x <= -480 || p1Pos.y >= 480 || p1Pos.y <= -480)
+		{
+			p1Pos = new Vector2( (Random.Range(-450.0f, 450.0f) ), (Random.Range(-450.0f, 450.0f) ) );
+			p1Size = 40;
+			p1Speed = 10;
+			sendMessage();
+		}
 	}
 	
 	void tryMove(string inputMove)
@@ -47,7 +54,7 @@ public class FakeServerInputs : MonoBehaviour
 		}
 		else if(inputMove == "L")
 		{
-			p1Dir = new Vector2(0,1);
+			p1Dir = new Vector2(1,0);
 			if(p1Speed > 0)
 				p1Speed *= -1;
 		}
@@ -81,8 +88,9 @@ public class FakeServerInputs : MonoBehaviour
 	{
 		message = p1Pos.x.ToString() + "$" + p1Pos.y.ToString() + "$" + p1Dir.x.ToString() + "$" + 
 				  p1Dir.y.ToString() + "$" + p1Speed.ToString() + "$" + p1Size.ToString();
+		print("From Server: " + message);
 		
 		//This will eventualy be TCP code to send message to the client
-		activeClient.message = message;
+		activeClient.doMove(message);
 	}
 }
