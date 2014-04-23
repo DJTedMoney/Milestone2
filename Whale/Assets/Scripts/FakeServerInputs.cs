@@ -121,6 +121,12 @@ public class FakeServerInputs : MonoBehaviour
 	{
 		message = p1Pos.x.ToString() + "$" + p1Pos.y.ToString() + "$" + p1Dir.x.ToString() + "$" + 
 				  p1Dir.y.ToString() + "$" + p1Speed.ToString() + "$" + p1Size.ToString();
+		
+		//should add all 4 of the pellets' X and Y to the end of the message
+		for (int i = 0; i < 4; i++){
+			message += "$" + pelletPos[i].x.ToString() + "$" + pelletPos[i].y.ToString();
+		}
+		
 		print("From Server: " + message);
 		
 		//This will eventualy be TCP code to send message to the client
