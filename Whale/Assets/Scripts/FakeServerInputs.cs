@@ -51,17 +51,17 @@ public class FakeServerInputs : MonoBehaviour
 		//Random.Range (0, screenmax); 
 		
 		//foreach (Vector2 pos in pelletPos){
-		int xDif; 
-		int yDif;
+		float xDif; 
+		float yDif;
 		bool xFlag = false;
 		bool yFlag = false;
 		for (int i = 0; i < 4 ; i++)
 		{
-			xDif = (int)(p1Pos.x-pelletPos[i].x);
-			yDif = (int)(p1Pos.y-pelletPos[i].y);
-			if(xDif <= ((p1Size/2) + 10) && xDif >= -((p1Size/2) + 10))
+			xDif = Mathf.Abs(p1Pos.x-pelletPos[i].x);
+			yDif = Mathf.Abs(p1Pos.y-pelletPos[i].y);
+			if(xDif <= ((p1Size) + 20))
 				xFlag = true;
-			if(yDif <= ((p1Size/2) + 10) && yDif >= -((p1Size/2) + 10))
+			if(yDif <= (p1Size + 20))
 				yFlag = true;
 			if (xFlag && yFlag) 
 			{
