@@ -7,7 +7,7 @@ public string userName;
 	
 	public GUIText grafxText;
 	
-	public bool showLogin;
+	public bool showLogin = false;
 	
 	// Use this for initialization
 	void Start () 
