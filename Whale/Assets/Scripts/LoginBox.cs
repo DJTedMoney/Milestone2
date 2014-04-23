@@ -7,25 +7,21 @@ public class LoginBox : MonoBehaviour
 	public string passWord;
 	
 	public GUIText grafxText;
+	public GameManager manager;
 	
 	public bool showLogin;
 	
 	// Use this for initialization
 	void Start () 
 	{
-		// grafxText = GameObject.Find("GUIText").GetComponent<GUIText>();
+		manager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		
 		userName = "0000";
 		passWord = "";
 		
-		// grafxText.text = "0000 0000";
 	}
 	
 	// Update is called once per frame
-	void Update () 
-	{
-		// grafxText.text = "hello";
-	}
 	
 	void OnGUI()
 	{	
@@ -44,6 +40,7 @@ public class LoginBox : MonoBehaviour
 				//grafxText.text = "Connect";
 				
 				showLogin = !showLogin;
+				manager.start = true;
 			}
 		}
 		
@@ -56,6 +53,7 @@ public class LoginBox : MonoBehaviour
 				//grafxText.text = "Hello";
 				
 				showLogin = !showLogin;
+				manager.start = false;
 			}
 		}
 	}

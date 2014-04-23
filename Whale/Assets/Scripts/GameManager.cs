@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	char delim = '$';
 	public bool move;
 	public bool send;
+	public bool start;
 	
 	// Use this for initialization
 	void Start () 
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
 		activeClient = GameObject.Find("GameClient").GetComponent<Client>();
 		player = GameObject.Find ("Player").GetComponent<Player>();
 		command = "";
+		start = false;
 		move = false;
 		send = false;
 		pellets = new Pellet[4];
@@ -30,8 +32,11 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		sendMove();
-		applyMove();
+		if(start)
+		{
+			sendMove();
+			applyMove();
+		}
 	}
 	
 	public void sendMove()

@@ -58,10 +58,12 @@ public class FakeServerInputs : MonoBehaviour
 		for (int i = 0; i < 4 ; i++)
 		{
 			xDif = Mathf.Abs(p1Pos.x-pelletPos[i].x);
+			print ("xdif = " + xDif);
 			yDif = Mathf.Abs(p1Pos.y-pelletPos[i].y);
-			if(xDif <= ((p1Size) + 20))
+			print ("ydif = " + yDif);
+			if(xDif <= ((p1Size)/2 + 20))
 				xFlag = true;
-			if(yDif <= (p1Size + 20))
+			if(yDif <= (p1Size/2 + 20))
 				yFlag = true;
 			if (xFlag && yFlag) 
 			{
